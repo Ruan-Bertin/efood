@@ -7,6 +7,7 @@ export const Container = styled.section`
   margin: 0 auto;
   display: flex;
   justify-content: center;
+  margin-bottom: 120px;
 `
 export const List = styled.div`
   display: grid;

@@ -6,10 +6,11 @@ import bannerImg from '../../assets/images/restbanner1.png'
 export const HeaderProduct = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
   height: 186px;
   background-image: url(${fundo});
-  padding: 63px 171px 0px 171px;
+  padding: 63px 171px 65px 171px;
 
   a {
     text-decoration: none;
@@ -69,7 +70,7 @@ export const Container = styled.div`
 `
 export const Category = styled.p`
   font-size: 32px;
-  // font-weight: 100;
+  font-weight: 100;
   line-height: 38px;
   letter-spacing: 0em;
   text-align: left;

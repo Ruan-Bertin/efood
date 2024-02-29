@@ -6,7 +6,7 @@ export const Container = styled.div`
   width: 100%;
   height: 398px;
   background-color: ${cores.branca};
-  margin-bottom: 40px;
+  margin-bottom: 48px;
   position: relative;
 `
 export const Back = styled.div`
