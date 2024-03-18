@@ -20,7 +20,7 @@ type Props = {
   description: string
 }
 
-const Restaurant = ({
+const RestaurantCard = ({
   id,
   title,
   image,
@@ -39,12 +39,10 @@ const Restaurant = ({
         </Note>
       </div>
       <Description>{description}</Description>
-      <Link to={`/restaurant/${id}`}>
-        <ButtonMore>Saiba mais</ButtonMore>
-      </Link>
+      <ButtonMore to={`/restaurant/${id}`}>Saiba mais</ButtonMore>
     </Back>
     <Tag>{category}</Tag>
   </Container>
 )
 
-export default Restaurant
+export default RestaurantCard

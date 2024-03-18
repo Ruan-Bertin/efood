@@ -1,67 +1,29 @@
 import Footer from '../../components/Footer'
 import Product from '../../components/Product'
 import ProductLIst from '../../components/ProductList'
-import ProductModel from '../../models/Product'
-import productImage from '../../assets/images/itemImage.png'
+import { Restaurant, Cardapio } from '../Home'
+import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 
-const products: ProductModel[] = [
-  {
-    id: 1,
-    image: productImage,
-    title: 'Pizza Marguerita',
-    description:
-      'A clássica Marguerita: molho de tonate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    button: 'Adicionar ao carrinho'
-  },
-  {
-    id: 2,
-    image: productImage,
-    title: 'Pizza Marguerita',
-    description:
-      'A clássica Marguerita: molho de tonate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    button: 'Adicionar ao carrinho'
-  },
-  {
-    id: 3,
-    image: productImage,
-    title: 'Pizza Marguerita',
-    description:
-      'A clássica Marguerita: molho de tonate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    button: 'Adicionar ao carrinho'
-  },
-  {
-    id: 4,
-    image: productImage,
-    title: 'Pizza Marguerita',
-    description:
-      'A clássica Marguerita: molho de tonate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    button: 'Adicionar ao carrinho'
-  },
-  {
-    id: 5,
-    image: productImage,
-    title: 'Pizza Marguerita',
-    description:
-      'A clássica Marguerita: molho de tonate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    button: 'Adicionar ao carrinho'
-  },
-  {
-    id: 6,
-    image: productImage,
-    title: 'Pizza Marguerita',
-    description:
-      'A clássica Marguerita: molho de tonate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    button: 'Adicionar ao carrinho'
-  }
-]
+const Perfil = () => {
+  const { id } = useParams()
 
-const perfil = () => (
-  <>
-    <Product>
-      <ProductLIst products={products} />
-    </Product>
-    <Footer />
-  </>
-)
+  const [cardapio, setCardapio] = useState<Cardapio[]>([])
 
-export default perfil
+  useEffect(() => {
+    fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`)
+      .then((res) => res.json())
+      .then((res) => setCardapio(res))
+  }, [id])
+
+  return (
+    <>
+      <Product>
+        <ProductLIst products={cardapio} />
+      </Product>
+      <Footer />
+    </>
+  )
+}
+
+export default Perfil

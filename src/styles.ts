@@ -18,5 +18,11 @@ const GlobalStyle = createGlobalStyle`
   body{
     background-color: ${cores.areia}
   }
+
+  .container {
+    max-width: 1024px;
+    width: 100%;
+    margin: 0 auto;
+  }
 `
 export default GlobalStyle

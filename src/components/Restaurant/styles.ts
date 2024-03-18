@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { cores } from '../../styles'
+import { Link } from 'react-router-dom'
 
 export const Container = styled.div`
   max-width: 472px;
@@ -81,7 +82,7 @@ export const Description = styled.p`
   margin: 16px 0px;
   color: ${cores.rosa};
 `
-export const ButtonMore = styled.button`
+export const ButtonMore = styled(Link)`
   width: 82px;
   height: 24px;
   padding: 4px 6px;
@@ -94,4 +95,5 @@ export const ButtonMore = styled.button`
   text-align: center;
   border: none;
   cursor: pointer;
+  text-decoration: none;
 `

@@ -44,7 +44,6 @@ export const ProductBanner = styled.div`
   width: 100%;
   height: 280px;
   overflow: hidden;
-  background-image: url(${bannerImg});
   background-size: cover;
 
   &::before {
