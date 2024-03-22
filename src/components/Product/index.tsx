@@ -1,16 +1,7 @@
 import React, { ReactNode, useEffect, useState } from 'react'
 
 import { Link, useParams } from 'react-router-dom'
-import {
-  HeaderProduct,
-  Logo,
-  ButtonCart,
-  ButtonHome,
-  ProductBanner,
-  Container,
-  Category,
-  Title
-} from './styles'
+import * as s from './styles'
 import logo from '../../assets/images/logo.png'
 import { Restaurant } from '../../pages/Home'
 
@@ -31,20 +22,22 @@ const Product = ({ children }: Props) => {
 
   return (
     <>
-      <HeaderProduct>
+      <s.HeaderProduct>
         <Link to="/">
-          <ButtonHome>Restaurantes</ButtonHome>
+          <s.ButtonHome>Restaurantes</s.ButtonHome>
         </Link>
-        <Logo src={logo} />
-        <ButtonCart>0 produto(s) no carrinho</ButtonCart>
-      </HeaderProduct>
+        <s.Logo src={logo} />
+        <s.ButtonCart>0 produto(s) no carrinho</s.ButtonCart>
+      </s.HeaderProduct>
       {restaurante && (
-        <ProductBanner style={{ backgroundImage: `url(${restaurante.capa})` }}>
-          <Container>
-            <Category>{restaurante.tipo}</Category>
-            <Title>{restaurante.titulo}</Title>
-          </Container>
-        </ProductBanner>
+        <s.ProductBanner
+          style={{ backgroundImage: `url(${restaurante.capa})` }}
+        >
+          <s.Container>
+            <s.Category>{restaurante.tipo}</s.Category>
+            <s.Title>{restaurante.titulo}</s.Title>
+          </s.Container>
+        </s.ProductBanner>
       )}
       {children}
     </>

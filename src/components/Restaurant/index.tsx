@@ -1,14 +1,4 @@
-import { Link } from 'react-router-dom'
-import {
-  Back,
-  Container,
-  Description,
-  Image,
-  Note,
-  Tag,
-  Title,
-  ButtonMore
-} from './styles'
+import * as s from './styles'
 import star from '../../assets/images/estrela.png'
 
 type Props = {
@@ -28,21 +18,21 @@ const RestaurantCard = ({
   note,
   description
 }: Props) => (
-  <Container>
-    <Image src={image} alt={title} />
-    <Back>
+  <s.Container>
+    <s.Image src={image} alt={title} />
+    <s.Back>
       <div>
-        <Title>{title}</Title>
-        <Note>
+        <s.Title>{title}</s.Title>
+        <s.Note>
           <span>{note}</span>
           <img src={star} alt="Estrela" />
-        </Note>
+        </s.Note>
       </div>
-      <Description>{description}</Description>
-      <ButtonMore to={`/restaurant/${id}`}>Saiba mais</ButtonMore>
-    </Back>
-    <Tag>{category}</Tag>
-  </Container>
+      <s.Description>{description}</s.Description>
+      <s.ButtonMore to={`/restaurant/${id}`}>Saiba mais</s.ButtonMore>
+    </s.Back>
+    <s.Tag>{category}</s.Tag>
+  </s.Container>
 )
 
 export default RestaurantCard

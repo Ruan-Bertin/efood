@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { cores } from '../../styles'
-import Button from '../Button'
+import Button from '../../components/Button'
 
 export const List = styled.div`
   max-width: 1024px;

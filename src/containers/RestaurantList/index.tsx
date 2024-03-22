@@ -1,14 +1,22 @@
 import { Restaurant } from '../../pages/Home'
-import RestaurantCard from '../Restaurant'
-import { Container, List } from './styles'
+import RestaurantCard from '../../components/Restaurant'
+import * as s from './styles'
 
 type Props = {
   restaurants: Restaurant[]
 }
 
+const getDescricao = (descricao: string) => {
+  if (descricao.length > 250) {
+    return descricao.slice(0, 247) + '...'
+  }
+
+  return descricao
+}
+
 const RestaurantList = ({ restaurants }: Props) => (
-  <Container>
-    <List>
+  <s.Container>
+    <s.List>
       {restaurants.map((restaurant) => (
         <RestaurantCard
           key={restaurant.id}
@@ -17,11 +25,11 @@ const RestaurantList = ({ restaurants }: Props) => (
           image={restaurant.capa}
           category={restaurant.tipo}
           note={restaurant.avaliacao}
-          description={restaurant.descricao}
+          description={getDescricao(restaurant.descricao)}
         />
       ))}
-    </List>
-  </Container>
+    </s.List>
+  </s.Container>
 )
 
 export default RestaurantList
