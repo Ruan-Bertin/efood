@@ -1,27 +1,31 @@
 import Footer from '../../components/Footer'
 import Product from '../../components/Product'
-import ProductLIst from '../../containers/ProductList'
-import { Cardapio } from '../Home'
-import { useEffect, useState } from 'react'
+import { ProductList } from '../../containers/ProductList'
 import { useParams } from 'react-router-dom'
+
+import { useGetProductsQuery } from '../../services/api'
 
 const Perfil = () => {
   const { id } = useParams()
 
-  const [cardapio, setCardapio] = useState<Cardapio[]>([])
+  const { data: cardapio, isLoading } = useGetProductsQuery(id!)
 
-  useEffect(() => {
-    fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`)
-      .then((res) => res.json())
-      .then((res) => setCardapio(res.cardapio))
-  }, [id])
+  if (isLoading) {
+    return <h3>CARREGANDO...</h3>
+  }
 
   return (
     <>
-      <Product>
-        <ProductLIst products={cardapio} />
-      </Product>
-      <Footer />
+      {cardapio && cardapio.length > 0 ? (
+        <>
+          <Product>
+            <ProductList products={cardapio} />
+          </Product>
+          <Footer />
+        </>
+      ) : (
+        <h3>Nenhum item encontrado no cardápio.</h3>
+      )}
     </>
   )
 }

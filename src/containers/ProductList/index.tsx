@@ -4,6 +4,8 @@ import * as s from './styles'
 import fechar from '../../assets/images/close.png'
 import Button from '../../components/Button'
 import { Cardapio } from '../../pages/Home'
+import { useDispatch } from 'react-redux'
+import { add, open } from '../../store/reducers/cart'
 
 type Props = {
   products: Cardapio[]
@@ -11,20 +13,16 @@ type Props = {
 
 interface ModalState {
   isVisible: boolean
-  image: string
-  title: string
-  description: string
-  porcao: string
-  preco: number
 }
 
-const formataPreco = (preco = 0) => {
+export const formataPreco = (preco = 0) => {
   return new Intl.NumberFormat('pt-BR', {
     style: 'currency',
     currency: 'BRL'
   }).format(preco)
 }
 export const ProductList: React.FC<Props> = ({ products }) => {
+  console.log(products)
   const getDescricao = (descricao: string) => {
     if (descricao.length > 170) {
       return descricao.slice(0, 167) + '...'
@@ -33,24 +31,24 @@ export const ProductList: React.FC<Props> = ({ products }) => {
     return descricao
   }
 
+  const [selectedProduct, setSelectedProduct] = useState<Cardapio>()
+
   const [modal, setModal] = useState<ModalState>({
-    isVisible: false,
-    image: '',
-    title: '',
-    description: '',
-    porcao: '',
-    preco: 0
+    isVisible: false
   })
 
-  const closeModal = () => {
+  const openModal = (product: Cardapio) => {
+    setSelectedProduct(product)
     setModal({
-      isVisible: false,
-      image: '',
-      title: '',
-      description: '',
-      porcao: '',
-      preco: 0
+      isVisible: true
     })
+  }
+
+  const dispatch = useDispatch()
+
+  const addToCart = () => {
+    dispatch(add(selectedProduct!))
+    dispatch(open())
   }
 
   return (
@@ -63,18 +61,7 @@ export const ProductList: React.FC<Props> = ({ products }) => {
             <s.ItemDescription>
               {getDescricao(product.descricao)}
             </s.ItemDescription>
-            <s.ItemButtom
-              onClick={() => {
-                setModal({
-                  isVisible: true,
-                  image: `${product.foto}`,
-                  title: `${product.nome}`,
-                  description: `${product.descricao}`,
-                  porcao: `${product.porcao}`,
-                  preco: product.preco
-                })
-              }}
-            >
+            <s.ItemButtom onClick={() => openModal(product)}>
               Adicionar ao carrinho
             </s.ItemButtom>
           </s.ListItem>
@@ -87,24 +74,31 @@ export const ProductList: React.FC<Props> = ({ products }) => {
               src={fechar}
               alt="Ícone de fechar"
               onClick={() => {
-                closeModal()
+                setModal({
+                  isVisible: false
+                })
               }}
             />
           </header>
           <s.ModalContent>
-            <img src={modal.image} alt="teste" />
+            <img src={selectedProduct?.foto} alt="teste" />
             <div>
-              <h4>{modal.title}</h4>
+              <h4>{selectedProduct?.nome}</h4>
               <p>
-                {modal.description}
+                {selectedProduct?.descricao}
                 <br />
                 <br />
-                Serve: de {modal.porcao}
+                Serve: de {selectedProduct?.porcao}
               </p>
-              <Button type="button" title="adicionar ao carrinho">
-                {['Adicionar ao carrinho - ', formataPreco(modal.preco)].join(
-                  ''
-                )}
+              <Button
+                type="button"
+                title="adicionar ao carrinho"
+                onClick={addToCart}
+              >
+                {[
+                  'Adicionar ao carrinho - ',
+                  formataPreco(selectedProduct?.preco)
+                ].join('')}
               </Button>
             </div>
           </s.ModalContent>
@@ -112,7 +106,9 @@ export const ProductList: React.FC<Props> = ({ products }) => {
         <div
           className="overlay"
           onClick={() => {
-            closeModal()
+            setModal({
+              isVisible: false
+            })
           }}
         ></div>
       </s.ModalContainer>
