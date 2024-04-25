@@ -1,16 +1,17 @@
 import styled from 'styled-components'
 import fundo from '../../assets/images/fundo.png'
 import { cores } from '../../styles'
-import bannerImg from '../../assets/images/restbanner1.png'
 
 export const HeaderProduct = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  height: 186px;
   background-image: url(${fundo});
-  padding: 63px 171px 65px 171px;
+
+  div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 186px;
+  }
 
   a {
     text-decoration: none;
@@ -23,14 +24,14 @@ export const Logo = styled.img`
   height: 57px;
 `
 export const ButtonHome = styled.a`
-  width: 109px;
+  max-width: 109px;
   height: 21px;
   font-weight: 900;
   font-size: 18px;
   text-align: center;
 `
 export const ButtonCart = styled.button`
-  width: 230px;
+  max-width: 230px;
   height: 21px;
   font-weight: 900;
   font-size: 18px;

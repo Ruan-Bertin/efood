@@ -38,13 +38,15 @@ const Product = ({ children }: Props) => {
   return (
     <>
       <s.HeaderProduct>
-        <Link to="/">
-          <s.ButtonHome>Restaurantes</s.ButtonHome>
-        </Link>
-        <s.Logo src={logo} />
-        <s.ButtonCart onClick={openCart}>
-          {items.length} produto(s) no carrinho
-        </s.ButtonCart>
+        <div className="container">
+          <Link to="/">
+            <s.ButtonHome>Restaurantes</s.ButtonHome>
+          </Link>
+          <s.Logo src={logo} />
+          <s.ButtonCart onClick={openCart}>
+            {items.length} produto(s) no carrinho
+          </s.ButtonCart>
+        </div>
       </s.HeaderProduct>
       {cardapio && (
         <s.ProductBanner style={{ backgroundImage: `url(${cardapio.capa})` }}>
