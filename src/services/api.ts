@@ -1,6 +1,40 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
-import { Restaurant, Cardapio } from '../pages/Home'
+import { Restaurant, Cardapio } from '../pages/Home' // Assuming these types are defined
+
+export type Product = {
+  id: number
+  price: number
+}
+
+export type PurchasePayload = {
+  products: Product[]
+  delivery: {
+    receiver: string
+    address: {
+      description: string
+      city: string
+      zipCode: string
+      number: number
+      complement?: string
+    }
+  }
+  payment: {
+    card: {
+      name: string
+      number: string
+      code: number
+      expires: {
+        month: number
+        year: number
+      }
+    }
+  }
+}
+
+export type CheckoutResponse = {
+  orderId: string
+}
 
 const api = createApi({
   baseQuery: fetchBaseQuery({
@@ -16,6 +50,13 @@ const api = createApi({
     getProducts: builder.query<Cardapio[], string>({
       query: (id) => `restaurantes/${id}`,
       transformResponse: (response: any) => response.cardapio
+    }),
+    purchase: builder.mutation<CheckoutResponse, PurchasePayload>({
+      query: (body) => ({
+        url: 'checkout',
+        method: 'POST',
+        body
+      })
     })
   })
 })
@@ -23,7 +64,8 @@ const api = createApi({
 export const {
   useGetRestaurantsQuery,
   useGetProductsQuery,
-  useGetCurrentRestaurantsQuery
+  useGetCurrentRestaurantsQuery,
+  usePurchaseMutation
 } = api
 
 export default api

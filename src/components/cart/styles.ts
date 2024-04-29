@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 import fechar from '../../assets/images/lixeira.png'
 import { cores } from '../../styles'
-import Button from '../Button'
 
 export const Overlay = styled.div`
   position: absolute;
@@ -35,12 +34,48 @@ export const CartContainer = styled.div`
   }
 `
 
-export const SideBar = styled.aside`
+export const Sidebar = styled.aside`
   background-color: ${cores.rosa};
   z-index: 1;
   padding: 32px 8px 16px 8px;
   max-width: 360px;
   width: 100%;
+
+  &.is-closed {
+    display: none;
+  }
+  label {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 16px;
+    color: ${cores.beje};
+    display: block;
+    margin-bottom: 8px;
+  }
+  input {
+    background-color: ${cores.beje};
+    height: 32px;
+    padding: 8px;
+    border: none;
+    width: 100%;
+    margin-bottom: 8px;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 16px;
+    color: black;
+
+    &.error {
+      border: 2px solid red;
+      color: red;
+    }
+  }
+  p {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+    color: ${cores.beje};
+    margin-bottom: 16px;
+  }
 `
 
 export const Prices = styled.div`
@@ -98,4 +133,30 @@ export const CartItem = styled.li`
     top: 75px;
     left: 320px;
   }
+`
+export const Title = styled.h3`
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  color: ${cores.beje};
+  margin-bottom: 16px;
+`
+
+export const InputGroup = styled.div`
+  display: flex;
+  gap: 34px;
+  #cardNumber {
+    width: 228px;
+  }
+`
+export const Button = styled.button`
+  width: 100%;
+  padding: 4px;
+  border: none;
+  background-color: ${cores.beje};
+  color: ${cores.rosa};
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  margin-bottom: 8px;
 `
