@@ -1,14 +1,10 @@
-import React, { ReactNode, useEffect, useState } from 'react'
+import { ReactNode } from 'react'
 
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import * as s from './styles'
 import logo from '../../assets/images/logo.png'
-import { Restaurant, Cardapio } from '../../pages/Home'
 import { open } from '../../store/reducers/cart'
-import {
-  useGetProductsQuery,
-  useGetCurrentRestaurantsQuery
-} from '../../services/api'
+import { useGetCurrentRestaurantsQuery } from '../../services/api'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootReducer } from '../../store'
 
@@ -32,9 +28,7 @@ const Product = ({ children }: Props) => {
     <>
       <s.HeaderProduct>
         <div className="container">
-          <Link to="/">
-            <s.ButtonHome to="/">Restaurantes</s.ButtonHome>
-          </Link>
+          <s.ButtonHome to="/">Restaurantes</s.ButtonHome>
           <s.Logo src={logo} />
           <s.ButtonCart onClick={openCart}>
             {items.length} produto(s) no carrinho

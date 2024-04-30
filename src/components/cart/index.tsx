@@ -8,11 +8,11 @@ import { RootReducer } from '../../store'
 import { close, remove, clear } from '../../store/reducers/cart'
 import { formataPreco } from '../../containers/ProductList'
 import * as s from './styles'
+import InputMask from 'react-input-mask'
 
 const Cart = () => {
   const { isOpen, items } = useSelector((state: RootReducer) => state.cart)
-  const [purchase, { data, isLoading, isError, isSuccess }] =
-    usePurchaseMutation()
+  const [purchase, { data, isSuccess }] = usePurchaseMutation()
   const [cart, setCart] = useState(true)
   const [purchaseData, setPurchaseData] = useState(false)
   const [paymentData, setPaymentData] = useState(false)
@@ -181,31 +181,36 @@ const Cart = () => {
         {items.length < 1 ? (
           <div>
             <s.Title>Carrinho vazio</s.Title>
+            <s.Button onClick={closeCart} type="button" title="fechar carrinho">
+              fechar carrinho
+            </s.Button>
           </div>
         ) : (
-          <ul>
-            {items.map((item) => (
-              <s.CartItem key={item.id}>
-                <img src={item.foto} alt={item.nome} />
-                <div>
-                  <h3>{item.nome}</h3>
-                  <span>{formataPreco(item.preco)}</span>
-                </div>
-                <button onClick={() => removeItem(item.id)} />
-              </s.CartItem>
-            ))}
-          </ul>
+          <>
+            <ul>
+              {items.map((item) => (
+                <s.CartItem key={item.id}>
+                  <img src={item.foto} alt={item.nome} />
+                  <div>
+                    <h3>{item.nome}</h3>
+                    <span>{formataPreco(item.preco)}</span>
+                  </div>
+                  <button onClick={() => removeItem(item.id)} />
+                </s.CartItem>
+              ))}
+            </ul>
+            <s.Prices>
+              Valor total <span>{formataPreco(getTotalPrice())}</span>
+            </s.Prices>
+            <s.Button
+              onClick={goToPurchase}
+              type="button"
+              title="continuar com a compra"
+            >
+              Continuar com a entrega
+            </s.Button>
+          </>
         )}
-        <s.Prices>
-          Valor total <span>{formataPreco(getTotalPrice())}</span>
-        </s.Prices>
-        <s.Button
-          onClick={goToPurchase}
-          type="button"
-          title="continuar com a compra"
-        >
-          Continuar com a entrega
-        </s.Button>
       </s.Sidebar>
       <s.Sidebar className={purchaseData ? '' : 'is-closed'}>
         <s.Title>Entrega</s.Title>
@@ -247,13 +252,14 @@ const Cart = () => {
           <s.InputGroup>
             <div>
               <label htmlFor="CEP">CEP</label>
-              <input
+              <InputMask
                 type="text"
                 name="CEP"
                 id="CEP"
                 onChange={form.handleChange}
                 onBlur={form.handleBlur}
                 className={checkInput('CEP') ? 'error' : ''}
+                mask="99999-999"
               />
             </div>
             <div>
@@ -317,48 +323,52 @@ const Cart = () => {
           <s.InputGroup>
             <div>
               <label htmlFor="cardNumber">Número do cartão</label>
-              <input
-                type="number"
+              <InputMask
+                type="text"
                 name="cardNumber"
                 id="cardNumber"
                 onChange={form.handleChange}
                 onBlur={form.handleBlur}
                 className={checkInput('cardNumber') ? 'error' : ''}
+                mask="9999 9999 9999 9999"
               />
             </div>
             <div>
               <label htmlFor="cvv">CVV</label>
-              <input
+              <InputMask
                 type="text"
                 name="cvv"
                 id="cvv"
                 onChange={form.handleChange}
                 onBlur={form.handleBlur}
                 className={checkInput('cvv') ? 'error' : ''}
+                mask="999"
               />
             </div>
           </s.InputGroup>
           <s.InputGroup>
             <div>
               <label htmlFor="expiresMonth">Mês de vencimento</label>
-              <input
+              <InputMask
                 type="text"
                 name="expiresMonth"
                 id="expiresMonth"
                 onChange={form.handleChange}
                 onBlur={form.handleBlur}
                 className={checkInput('expiresMonth') ? 'error' : ''}
+                mask="99"
               />
             </div>
             <div>
               <label htmlFor="expiresYear">Ano de vencimento</label>
-              <input
+              <InputMask
                 type="text"
                 name="expiresYear"
                 id="expiresYear"
                 onChange={form.handleChange}
                 onBlur={form.handleBlur}
                 className={checkInput('expiresYear') ? 'error' : ''}
+                mask="9999"
               />
             </div>
           </s.InputGroup>
