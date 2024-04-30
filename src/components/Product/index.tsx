@@ -27,20 +27,13 @@ const Product = ({ children }: Props) => {
   const { id } = useParams()
 
   const { data: cardapio } = useGetCurrentRestaurantsQuery(id!)
-  // const [restaurante, setRestaurante] = useState<Restaurant>()
-
-  // useEffect(() => {
-  //   fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`)
-  //     .then((res) => res.json())
-  //     .then((res) => setRestaurante(res))
-  // }, [id])
 
   return (
     <>
       <s.HeaderProduct>
         <div className="container">
           <Link to="/">
-            <s.ButtonHome>Restaurantes</s.ButtonHome>
+            <s.ButtonHome to="/">Restaurantes</s.ButtonHome>
           </Link>
           <s.Logo src={logo} />
           <s.ButtonCart onClick={openCart}>

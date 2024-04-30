@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import fundo from '../../assets/images/fundo.png'
 import { cores } from '../../styles'
+import { Link } from 'react-router-dom'
 
 export const HeaderProduct = styled.div`
   background-image: url(${fundo});
@@ -23,7 +24,7 @@ export const Logo = styled.img`
   width: 100%;
   height: 57px;
 `
-export const ButtonHome = styled.a`
+export const ButtonHome = styled(Link)`
   max-width: 109px;
   height: 21px;
   font-weight: 900;

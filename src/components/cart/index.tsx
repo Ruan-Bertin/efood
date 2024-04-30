@@ -363,7 +363,7 @@ const Cart = () => {
             </div>
           </s.InputGroup>
           <s.Button
-            type="button"
+            type="submit"
             title="Finalizar pagamento"
             onClick={goToCheckout}
             className="margin-top"
@@ -379,7 +379,7 @@ const Cart = () => {
           </s.Button>
         </form>
       </s.Sidebar>
-      {isSuccess ? (
+      {isSuccess && data ? (
         <s.Sidebar className={checkout ? '' : 'is-closed'}>
           <s.Title>Pedido realizado - {data.orderId}</s.Title>
           <p>
