@@ -1,6 +1,5 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
-import Button from '../../components/Button'
+import { breakpoints, cores } from '../../styles'
 
 export const List = styled.div`
   max-width: 1024px;
@@ -11,6 +10,12 @@ export const List = styled.div`
   gap: 32px;
   margin-bottom: 120px;
   margin-top: 56px;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    justify-items: center;
+  }
 `
 export const ListItem = styled.div`
   width: 320px;
@@ -99,6 +104,11 @@ export const Modal = styled.div`
       cursor: pointer;
     }
   }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    width: 100%;
+    height: auto;
+  }
 `
 
 export const ModalContent = styled.div`
@@ -109,6 +119,11 @@ export const ModalContent = styled.div`
     width: 280px;
     height: 280px;
     object-fit: cover;
+
+    @media (max-width: ${breakpoints.tablet}) {
+      width: 100%;
+      height: auto;
+    }
   }
 
   h4 {
@@ -117,6 +132,10 @@ export const ModalContent = styled.div`
     line-height: 21px;
     letter-spacing: 0em;
     padding-bottom: 16px;
+
+    @media (max-width: ${breakpoints.tablet}) {
+      margin-top: 10px;
+    }
   }
 
   p {
@@ -131,6 +150,10 @@ export const ModalContent = styled.div`
     display: flex;
     flex-direction: column;
     padding-left: 24px;
+
+    @media (max-width: ${breakpoints.tablet}) {
+      padding-left: 0;
+    }
   }
 
   button {
@@ -146,5 +169,10 @@ export const ModalContent = styled.div`
     border: none;
     cursor: pointer;
     margin-top: 16px;
+  }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    flex-direction: column;
+    align-items: center;
   }
 `

@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { breakpoints, cores } from '../../styles'
 import { Link } from 'react-router-dom'
 
 export const Container = styled.div`
@@ -9,6 +9,11 @@ export const Container = styled.div`
   background-color: ${cores.branca};
   margin-bottom: 48px;
   position: relative;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    max-width: 420px;
+    height: 450px;
+  }
 `
 export const Back = styled.div`
   max-width: 472px;
@@ -48,6 +53,11 @@ export const Image = styled.img`
   width: 472px;
   height: 217px;
   margin-bottom: -4px;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    width: 420px;
+    height: 210px;
+  }
 `
 export const Title = styled.h3`
   font-size: 18px;
@@ -81,6 +91,10 @@ export const Description = styled.p`
   line-height: 22px;
   margin: 16px 0px;
   color: ${cores.rosa};
+
+  @media (max-width: ${breakpoints.tablet}) {
+    margin-bottom: 25px;
+  }
 `
 export const ButtonMore = styled(Link)`
   width: 82px;

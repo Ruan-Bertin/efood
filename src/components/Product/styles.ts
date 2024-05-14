@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import fundo from '../../assets/images/fundo.png'
-import { cores } from '../../styles'
+import { breakpoints, cores } from '../../styles'
 import { Link } from 'react-router-dom'
 
 export const HeaderProduct = styled.div`
@@ -12,6 +12,12 @@ export const HeaderProduct = styled.div`
     align-items: center;
     width: 100%;
     height: 186px;
+
+    @media (max-width: ${breakpoints.tablet}) {
+      display: flex;
+      flex-direction: column;
+      padding: 8px 0;
+    }
   }
 
   a {
@@ -56,6 +62,10 @@ export const ProductBanner = styled.div`
     width: 100%;
     height: 100%;
     background-color: rgba(48, 45, 46, 0.6);
+  }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    padding-left: 10px;
   }
 `
 export const Container = styled.div`
