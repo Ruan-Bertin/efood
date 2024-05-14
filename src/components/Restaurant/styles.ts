@@ -12,7 +12,6 @@ export const Container = styled.div`
 
   @media (max-width: ${breakpoints.tablet}) {
     max-width: 420px;
-    height: 450px;
   }
 `
 export const Back = styled.div`
